@@ -13,12 +13,6 @@ cp -r cc-daily-report/daily-report ~/.claude/skills/daily-report
 
 This copies the skill, config, and all templates at once. Edit `~/.claude/skills/daily-report/config.json` to customize output directory, language, etc.
 
-To get updates via `git pull` instead, use a symlink:
-
-```bash
-ln -s /path/to/cc-daily-report/daily-report ~/.claude/skills/daily-report
-```
-
 ## Usage
 
 ```bash

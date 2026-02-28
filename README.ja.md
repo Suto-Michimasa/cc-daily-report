@@ -13,12 +13,6 @@ cp -r cc-daily-report/daily-report ~/.claude/skills/daily-report
 
 スキル、設定ファイル、テンプレートがまとめてコピーされます。出力先や言語を変更したい場合は `~/.claude/skills/daily-report/config.json` を編集してください。
 
-`git pull` で更新を取り込みたい場合はシンボリックリンクも可:
-
-```bash
-ln -s /path/to/cc-daily-report/daily-report ~/.claude/skills/daily-report
-```
-
 ## 使い方
 
 ```bash
