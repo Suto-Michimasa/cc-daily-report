@@ -1,17 +1,27 @@
 # cc-daily-report
 
-A Claude Code skill that generates daily work reports from your session history.
+A Claude Code plugin that generates daily work reports from your session history.
 
 It scans `~/.claude/projects/` for sessions on the target date, extracts what you worked on, and produces a structured Markdown report.
 
 ## Install
 
 ```bash
-git clone https://github.com/Suto-michimasa/cc-daily-report.git
-cp -r cc-daily-report/daily-report ~/.claude/skills/daily-report
+claude plugin install github:Suto-Michimasa/cc-daily-report
+claude plugin enable daily-report
 ```
 
-This copies the skill, config, and all templates at once. Edit `~/.claude/skills/daily-report/config.json` to customize output directory, language, etc.
+<details>
+<summary>Manual install (without plugin system)</summary>
+
+```bash
+git clone https://github.com/Suto-Michimasa/cc-daily-report.git
+cp -r cc-daily-report/skills/daily-report ~/.claude/skills/daily-report
+```
+
+</details>
+
+Edit `config.json` to customize output directory, language, etc.
 
 ## Usage
 
@@ -63,7 +73,7 @@ Reports are saved to `~/daily-reports/YYYY-MM-DD.md` by default.
 
 ## Configuration
 
-Edit `~/.claude/skills/daily-report/config.json`:
+Edit `config.json` in the skill directory:
 
 ```json
 {
@@ -93,7 +103,7 @@ The default template outputs:
 To use a custom template:
 
 ```bash
-cp cc-daily-report/daily-report/templates/default.md ~/.claude/daily-report-template.md
+cp cc-daily-report/skills/daily-report/templates/default.md ~/.claude/daily-report-template.md
 ```
 
 Create your own template following the same format (YAML frontmatter + Markdown with `<!-- -->` instructions for Claude).

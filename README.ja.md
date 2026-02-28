@@ -1,17 +1,27 @@
 # cc-daily-report
 
-Claude Code のセッション履歴から日報を自動生成するスキルです。
+Claude Code のセッション履歴から日報を自動生成するプラグインです。
 
 `~/.claude/projects/` 配下のセッションを対象日で絞り込み、構造化された Markdown レポートを出力します。
 
 ## インストール
 
 ```bash
-git clone https://github.com/Suto-michimasa/cc-daily-report.git
-cp -r cc-daily-report/daily-report ~/.claude/skills/daily-report
+claude plugin install github:Suto-Michimasa/cc-daily-report
+claude plugin enable daily-report
 ```
 
-スキル、設定ファイル、テンプレートがまとめてコピーされます。出力先や言語を変更したい場合は `~/.claude/skills/daily-report/config.json` を編集してください。
+<details>
+<summary>手動インストール（プラグインシステムを使わない場合）</summary>
+
+```bash
+git clone https://github.com/Suto-Michimasa/cc-daily-report.git
+cp -r cc-daily-report/skills/daily-report ~/.claude/skills/daily-report
+```
+
+</details>
+
+出力先や言語を変更したい場合は `config.json` を編集してください。
 
 ## 使い方
 
@@ -63,7 +73,7 @@ claude -p "/daily-report" --output-format text > ~/daily-reports/$(date +%Y-%m-%
 
 ## 設定
 
-`~/.claude/skills/daily-report/config.json` を編集してカスタマイズできます:
+スキルディレクトリ内の `config.json` を編集してカスタマイズできます:
 
 ```json
 {
@@ -93,7 +103,7 @@ claude -p "/daily-report" --output-format text > ~/daily-reports/$(date +%Y-%m-%
 カスタムテンプレートを使う場合:
 
 ```bash
-cp cc-daily-report/daily-report/templates/ja.md ~/.claude/daily-report-template.md
+cp cc-daily-report/skills/daily-report/templates/ja.md ~/.claude/daily-report-template.md
 ```
 
 同じフォーマット（YAML フロントマター + `<!-- -->` 指示付き Markdown）で独自テンプレートを作成できます。

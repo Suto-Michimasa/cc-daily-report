@@ -1,0 +1,8 @@
+{
+  "name": "daily-report",
+  "description": "Generate daily work reports from Claude Code session history",
+  "version": "1.0.0",
+  "author": {
+    "name": "Suto-Michimasa"
+  }
+}
