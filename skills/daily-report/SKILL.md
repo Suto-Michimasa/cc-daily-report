@@ -27,11 +27,51 @@ Replace `{{date}}` with the target date.
 
 ### 4. Extract session data
 
+Two-pass approach: first identify which projects had activity, then extract details only for active projects.
+
+**Pass 1 — Discover active projects (single command):**
+
 ```bash
-grep -rl '"YYYY-MM-DD' ~/.claude/projects/*/*.jsonl
+grep -rl 'YYYY-MM-DD' ~/.claude/projects/*/*.jsonl | python3 -c "
+import sys, os, json
+files = [l.strip() for l in sys.stdin if l.strip()]
+projects = {}
+for f in files:
+    first = json.loads(open(f).readline())
+    if first.get('type') == 'queue-operation': continue
+    proj = os.path.basename(os.path.dirname(f))
+    projects.setdefault(proj, []).append(f)
+for proj, fs in sorted(projects.items()):
+    print(f'{proj} ({len(fs)} files): {\" \".join(fs)}')
+"
 ```
 
-Group results by project directory. For each matching `.jsonl`, extract lines containing the target date via `grep`. From those lines, collect user prompts (`"type":"user"`) and tool calls. Skip sessions with no user messages or whose first line is `type:"queue-operation"` (subagents). Count the number of user messages per session as `{prompt_count}`.
+Review the output. Decide which projects are relevant (skip projects with only non-date-related matches if obvious). Then proceed to Pass 2 for each project.
+
+**Pass 2 — Extract user messages per project (one command per project):**
+
+Run for each project's files together:
+
+```bash
+cat <file1> <file2> ... | grep 'YYYY-MM-DD' | python3 -c "
+import sys, json
+msgs = []
+for l in sys.stdin:
+    try:
+        d = json.loads(l)
+    except: continue
+    if d.get('type') not in ('human','user'): continue
+    c = d.get('message',{}).get('content','')
+    if isinstance(c, list):
+        c = ' '.join(x.get('text','') for x in c if isinstance(x,dict) and x.get('type')=='text')
+    if c and not c.startswith('(local command'):
+        msgs.append(c[:150])
+print(f'PROMPT_COUNT: {len(msgs)}')
+for i,m in enumerate(msgs): print(f'[{i+1}] {m}')
+"
+```
+
+Derive `{project_name}` from directory name. `{session_count}` = number of files per project. Skip projects with 0 user messages.
 
 ### 5. Generate report
 
