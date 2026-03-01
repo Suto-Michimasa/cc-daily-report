@@ -35,8 +35,9 @@ For each matching file:
 1. Read the first line — skip if `type` is `"queue-operation"` (subagent session).
 2. Parse all lines as JSON. Collect messages with their role, content, and timestamp.
 3. Find user messages (`"type":"human"` or `"role":"user"`) whose content contains the query (case-insensitive).
-4. For each match, capture 1 surrounding message before and after for context.
-5. Stop after 20 total matches across all files.
+4. **Filter out noise**: Skip messages longer than 2000 characters — these are typically skill/system prompt expansions, not genuine user input.
+5. For each match, capture 1 surrounding message before and after for context.
+6. Stop after 20 total matches across all files.
 
 Content may be a string or an array of `{"type":"text","text":"..."}` objects — handle both.
 
@@ -53,13 +54,15 @@ Found N matches across M projects.
 
 ### project-name
 
-**YYYY-MM-DD HH:MM** (session abcd1234)
+**YYYY-MM-DD HH:MM** `session: abcd1234-5678-90ab-cdef-1234567890ab`
 > matched message content (truncated to 300 chars)...
 >
 > _context: surrounding message excerpt..._
 ```
 
-Bold the matching query text within the displayed content. Truncate long messages to 300 characters.
+- Use the **full UUID** for session ID (from the `.jsonl` filename, without the extension).
+- Bold the matching query text within the displayed content.
+- Truncate long messages to 300 characters.
 
 ### 5. Print summary
 
