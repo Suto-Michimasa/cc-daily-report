@@ -1,0 +1,8 @@
+{
+  "name": "weekly-report",
+  "description": "Generate weekly summary reports by aggregating daily reports or session history",
+  "version": "1.0.0",
+  "author": {
+    "name": "Suto-Michimasa"
+  }
+}

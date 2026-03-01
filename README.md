@@ -1,14 +1,23 @@
 # cc-session-tools
 
-A Claude Code plugin for productivity tracking using session history.
+A Claude Code plugin marketplace for productivity tracking using session history.
 
-It scans `~/.claude/projects/` for session data and provides daily/weekly reports, session search, and timesheet estimation.
+It scans `~/.claude/projects/` for session data and provides daily/weekly reports, session search, and timesheet estimation. Install all plugins at once or pick only what you need.
 
 ## Install
 
 ```bash
-claude plugin install github:Suto-Michimasa/cc-session-tools
-claude plugin enable session-tools
+# Register the marketplace
+/plugin marketplace add github:Suto-Michimasa/cc-session-tools
+
+# Install all
+/plugin install daily-report@session-tools
+/plugin install weekly-report@session-tools
+/plugin install session-search@session-tools
+/plugin install timesheet@session-tools
+
+# Or install only what you need
+/plugin install daily-report@session-tools
 ```
 
 <details>
@@ -16,7 +25,11 @@ claude plugin enable session-tools
 
 ```bash
 git clone https://github.com/Suto-Michimasa/cc-session-tools.git
-cp -r cc-session-tools/skills/* ~/.claude/skills/
+# Install all
+cp -r cc-session-tools/*/skills/* ~/.claude/skills/
+
+# Or install individually
+cp -r cc-session-tools/daily-report/skills/daily-report ~/.claude/skills/
 ```
 
 </details>
@@ -120,7 +133,7 @@ Calculates time based on message timestamps, splitting work blocks at 30-minute 
 Templates use YAML frontmatter + Markdown with `<!-- -->` instruction comments. To customize:
 
 ```bash
-cp cc-session-tools/skills/daily-report/templates/default.md ~/.claude/daily-report-template.md
+cp cc-session-tools/daily-report/skills/daily-report/templates/default.md ~/.claude/daily-report-template.md
 ```
 
 Then set `templatePath` in the corresponding `config.json`.

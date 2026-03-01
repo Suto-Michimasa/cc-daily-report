@@ -1,0 +1,8 @@
+{
+  "name": "session-search",
+  "description": "Search across all Claude Code sessions by keyword",
+  "version": "1.0.0",
+  "author": {
+    "name": "Suto-Michimasa"
+  }
+}

@@ -1,14 +1,23 @@
 # cc-session-tools
 
-Claude Code のセッション履歴を活用した生産性トラッキングプラグインです。
+Claude Code のセッション履歴を活用した生産性トラッキングプラグイン集です。
 
-`~/.claude/projects/` 配下のセッションデータから、日報・週報の生成、セッション検索、タイムシート推定を提供します。
+`~/.claude/projects/` 配下のセッションデータから、日報・週報の生成、セッション検索、タイムシート推定を提供します。全部まとめてインストールすることも、必要なものだけ選ぶこともできます。
 
 ## インストール
 
 ```bash
-claude plugin install github:Suto-Michimasa/cc-session-tools
-claude plugin enable session-tools
+# マーケットプレイスを登録
+/plugin marketplace add github:Suto-Michimasa/cc-session-tools
+
+# 全部インストール
+/plugin install daily-report@session-tools
+/plugin install weekly-report@session-tools
+/plugin install session-search@session-tools
+/plugin install timesheet@session-tools
+
+# または必要なものだけ
+/plugin install daily-report@session-tools
 ```
 
 <details>
@@ -16,7 +25,11 @@ claude plugin enable session-tools
 
 ```bash
 git clone https://github.com/Suto-Michimasa/cc-session-tools.git
-cp -r cc-session-tools/skills/* ~/.claude/skills/
+# 全部インストール
+cp -r cc-session-tools/*/skills/* ~/.claude/skills/
+
+# または個別に
+cp -r cc-session-tools/daily-report/skills/daily-report ~/.claude/skills/
 ```
 
 </details>
@@ -120,7 +133,7 @@ cp -r cc-session-tools/skills/* ~/.claude/skills/
 テンプレートは YAML フロントマター + `<!-- -->` 指示付き Markdown 形式です。カスタマイズするには:
 
 ```bash
-cp cc-session-tools/skills/daily-report/templates/ja.md ~/.claude/daily-report-template.md
+cp cc-session-tools/daily-report/skills/daily-report/templates/ja.md ~/.claude/daily-report-template.md
 ```
 
 対応する `config.json` の `templatePath` にパスを設定してください。

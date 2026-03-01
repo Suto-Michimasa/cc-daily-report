@@ -1,0 +1,8 @@
+{
+  "name": "timesheet",
+  "description": "Estimate per-project work time from Claude Code session timestamps",
+  "version": "1.0.0",
+  "author": {
+    "name": "Suto-Michimasa"
+  }
+}

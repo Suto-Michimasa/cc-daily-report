@@ -1,0 +1,40 @@
+{
+  "name": "session-tools",
+  "owner": {
+    "name": "Suto-Michimasa"
+  },
+  "metadata": {
+    "description": "Productivity tools for Claude Code: daily/weekly reports, session search, and timesheet",
+    "version": "1.0.0"
+  },
+  "plugins": [
+    {
+      "name": "daily-report",
+      "source": "./daily-report",
+      "description": "Generate daily work reports from Claude Code session history",
+      "version": "1.0.0",
+      "keywords": ["report", "daily", "productivity"]
+    },
+    {
+      "name": "weekly-report",
+      "source": "./weekly-report",
+      "description": "Generate weekly summary reports by aggregating daily reports or session history",
+      "version": "1.0.0",
+      "keywords": ["report", "weekly", "productivity"]
+    },
+    {
+      "name": "session-search",
+      "source": "./session-search",
+      "description": "Search across all Claude Code sessions by keyword",
+      "version": "1.0.0",
+      "keywords": ["search", "session", "productivity"]
+    },
+    {
+      "name": "timesheet",
+      "source": "./timesheet",
+      "description": "Estimate per-project work time from Claude Code session timestamps",
+      "version": "1.0.0",
+      "keywords": ["timesheet", "time-tracking", "productivity"]
+    }
+  ]
+}
