@@ -2,7 +2,7 @@
 name: daily-report
 description: Generate a daily work report from Claude Code session history
 user_invocable: true
-arguments: "YYYY-MM-DD (optional)"
+argument-hint: [date]
 ---
 
 Generate a Markdown daily report from `~/.claude/projects/` session history.

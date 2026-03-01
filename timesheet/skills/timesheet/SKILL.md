@@ -2,7 +2,7 @@
 name: timesheet
 description: Estimate per-project work time from Claude Code session timestamps
 user_invocable: true
-arguments: "YYYY-MM-DD..YYYY-MM-DD or YYYY-Www or YYYY-MM-DD (optional, default: current week)"
+argument-hint: [period]
 ---
 
 Estimate work time per project based on Claude Code session timestamps in `~/.claude/projects/`.

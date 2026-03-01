@@ -2,7 +2,7 @@
 name: weekly-report
 description: Generate a weekly summary report from daily reports or session history
 user_invocable: true
-arguments: "YYYY-Www or YYYY-MM-DD..YYYY-MM-DD (optional, default: current week)"
+argument-hint: [week-or-range]
 ---
 
 Generate a Markdown weekly report by aggregating daily reports or session data from `~/.claude/projects/`.
